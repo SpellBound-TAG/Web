@@ -1,0 +1,21 @@
+{
+  "folders": [
+	{
+		"path": "../../react-speech-recognition-app"
+	},
+	{
+		"path": "../../Langchain-Full-Course"
+	},
+	{
+		"path": ".."
+	},
+	{
+		"path": "../../algorithmic-trading-python"
+	}
+],
+  "settings": {
+    "files.watcherExclude": {
+      "**/target": true
+    }
+  }
+}
