@@ -3,6 +3,9 @@ import DragAndDrop from "./DragAndDrop";
 import { storage } from "../firebase";
 import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
 import { Button } from "@mui/material";
+import MusicPlayerSlider from "../MusicPlayer/MusicPlayer";
+import { doc, getDoc, onSnapshot, updateDoc } from "firebase/firestore";
+import { db } from "../firebase";
 
 var a;
 const AudioPlay = () => {
@@ -11,6 +14,7 @@ const AudioPlay = () => {
   const [file, setFile] = useState();
   const [progresspercent, setProgresspercent] = useState(0);
   const [imgUrl, setImgUrl] = useState(null);
+  const [options, setOptions] = useState();
 
   useEffect(() => {
     if (a) {
@@ -70,6 +74,48 @@ const AudioPlay = () => {
       }
     );
   };
+
+  const handleGetData = async () => {
+    const docRef = doc(db, "Options", "choices");
+    // const docSnap = await getDoc(docRef);
+
+    // if (docSnap.exists()) {
+    //   // console.log(docSnap.data());
+    //   setOptions(docSnap.data());
+    // } else {
+    //   // docSnap.data() will be undefined in this case
+    //   console.log("No such document!");
+    // }
+    const unsub = onSnapshot(docRef, (doc) => {
+      const data = doc.data().option;
+      setOptions(data);
+    });
+  };
+
+  const value = "rat";
+  const name = "animals";
+
+  const addValue = (event) => {
+    event.preventDefault();
+
+    if (options.hasOwnProperty(name) === false) {
+      options[name] = [];
+    }
+
+    options[name].push(value);
+    console.log(options);
+
+    async function PushData() {
+      try {
+        const data = doc(db, "Options", "choices");
+        const docRef = await updateDoc(data, { option: options });
+      } catch (e) {
+        console.error("Error adding document: ", e);
+      }
+    }
+    PushData();
+  };
+
   return (
     <div>
       <input type="file" onChange={addFile} />
@@ -81,6 +127,12 @@ const AudioPlay = () => {
       <Button color="secondary" onClick={handleSubmit}>
         Submit
       </Button>
+      <Button onClick={handleGetData}> Get Data</Button>
+      <Button onClick={addValue}> Add Value</Button>
+      {(options != undefined || options != null) && options.animals}
+      {/* <div>
+        <MusicPlayerSlider />
+      </div> */}
       {/* <form onSubmit={handleSubmit} className='form'>
         <input type='file' />
         <button type='submit'>Upload</button>
