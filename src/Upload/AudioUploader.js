@@ -6,6 +6,8 @@ import { Button } from "@mui/material";
 import MusicPlayerSlider from "../MusicPlayer/MusicPlayer";
 import { doc, getDoc, onSnapshot, updateDoc } from "firebase/firestore";
 import { db } from "../firebase";
+import MultipleSelectCheckmarks from "../Select";
+import LinearBuffer from "../ProgressBar";
 
 var a;
 const AudioPlay = () => {
@@ -97,14 +99,10 @@ const AudioPlay = () => {
 
   const addValue = (event) => {
     event.preventDefault();
-
     if (options.hasOwnProperty(name) === false) {
       options[name] = [];
     }
-
     options[name].push(value);
-    console.log(options);
-
     async function PushData() {
       try {
         const data = doc(db, "Options", "choices");
@@ -127,9 +125,18 @@ const AudioPlay = () => {
       <Button color="secondary" onClick={handleSubmit}>
         Submit
       </Button>
-      <Button onClick={handleGetData}> Get Data</Button>
-      <Button onClick={addValue}> Add Value</Button>
-      {(options != undefined || options != null) && options.animals}
+      {progresspercent === 100 ? (
+        <Button onClick={handleGetData}> Show Options</Button>
+      ) : null}
+      {progresspercent === 100 ? (
+        <Button onClick={addValue}> Add Value</Button>
+      ) : null}
+      {progresspercent > 0 && <LinearBuffer data={progresspercent} />}
+      {/* {(options != undefined || options != null) && options.animals} */}
+      {(options != undefined || options != null) &&
+        Object.keys(options).map((e, i) => (
+          <MultipleSelectCheckmarks key={i} data={options[e]} name={e} />
+        ))}
       {/* <div>
         <MusicPlayerSlider />
       </div> */}
