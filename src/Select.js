@@ -6,6 +6,11 @@ import FormControl from "@mui/material/FormControl";
 import ListItemText from "@mui/material/ListItemText";
 import Select from "@mui/material/Select";
 import Checkbox from "@mui/material/Checkbox";
+import {
+  createTheme,
+  makeStyles,
+  responsiveFontSizes,
+} from "@material-ui/core/styles";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -18,24 +23,52 @@ const MenuProps = {
   },
 };
 
-const names = [
-  "Oliver Hansen",
-  "Van Henry",
-  "April Tucker",
-  "Ralph Hubbard",
-  "Omar Alexander",
-  "Carlos Abbott",
-  "Miriam Wagner",
-  "Bradley Wilkerson",
-  "Virginia Andrews",
-  "Kelly Snyder",
-];
+// const names = [
+//   "Oliver Hansen",
+//   "Van Henry",
+//   "April Tucker",
+//   "Ralph Hubbard",
+//   "Omar Alexander",
+//   "Carlos Abbott",
+//   "Miriam Wagner",
+//   "Bradley Wilkerson",
+//   "Virginia Andrews",
+//   "Kelly Snyder",
+// ];
 
-const val = [];
+let theme = createTheme();
+theme = responsiveFontSizes(theme);
+const borderText = makeStyles((theme) => ({
+  root: {
+    display: "flex",
+    justifyContent: "center",
+    flexDirection: "column",
+    flex: "1 1 60%",
+    marginLeft: 30,
+    color: "green",
+
+    "& .MuiOutlinedInput-root": {
+      "& fieldset": {
+        borderColor: "orange",
+      },
+      "&:hover fieldset": {
+        borderColor: "yellow",
+      },
+      "&.Mui-focused fieldset": {
+        borderColor: "green",
+        color: "red",
+      },
+    },
+  },
+  text: {
+    color: "#000",
+  },
+}));
 
 export default function MultipleSelectCheckmarks({ data, name }, val) {
   const [personName, setPersonName] = React.useState([]);
   const [selectedValues, setSelectedValues] = React.useState([]);
+  const bor = borderText();
 
   const handleChange = (event) => {
     const {
@@ -49,13 +82,11 @@ export default function MultipleSelectCheckmarks({ data, name }, val) {
       typeof value === "string" ? value.split(",") : value
     );
   };
-  console.log(selectedValues);
-  console.log(val);
 
   return (
     <div>
-      <FormControl sx={{ m: 1, width: 300 }}>
-        <InputLabel id="demo-multiple-checkbox-label">Tag</InputLabel>
+      <FormControl sx={{ m: 1, width: 300 }} className={bor.root}>
+        <InputLabel id="demo-multiple-checkbox-label">{name}</InputLabel>
         <Select
           labelId="demo-multiple-checkbox-label"
           id="demo-multiple-checkbox"

@@ -4,18 +4,16 @@ import AudioRecorder from "./Record/AudioRecorder";
 import UserData from "./UserDetails/UserData";
 import { Route, Routes } from "react-router-dom";
 import Choice from "./Choose/Choice";
-// import Contacts from "./Contacts";
 import AudioPlay from "./Upload/AudioUploader";
 import CollapseMenu from "./HomePage/Permission";
 import PredictionForm from "./PredictionDemo";
+import NavbarFinal from "./Navbar";
+import Contact from "./Contact";
 
 const App = () => {
-  let [recordOption, setRecordOption] = useState("video");
-
-  const toggleRecordOption = (type) => {
-    return () => {
-      setRecordOption(type);
-    };
+  const [navbarOpen, setnavbarOpen] = useState(false);
+  const handleNavbar = () => {
+    setnavbarOpen(!navbarOpen);
   };
 
   return (
@@ -24,6 +22,7 @@ const App = () => {
         <button onClick={toggleRecordOption("audio")}>Record Audio</button>
       </div> */}
       <div>
+        <NavbarFinal navbarOpen={navbarOpen} handleNavbar={handleNavbar} />
         <Routes>
           <Route exact path="/" element={<CollapseMenu />} />
           <Route path="/user" element={<UserData />} />
@@ -31,7 +30,7 @@ const App = () => {
           <Route path="/upload" element={<AudioPlay />} />
           <Route path="/record" element={<AudioRecorder />} />
           <Route path="/predict" element={<PredictionForm />} />
-          {/* <Route path="/contact" element={<Contacts />} /> */}
+          {/* <Route path="/contact" element={<Contact />} /> */}
         </Routes>
       </div>
     </div>
