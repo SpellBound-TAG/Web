@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import Brand from "./Brand";
 import BurgerMenu from "./BurgerMenu";
 import CollapseMenu from "./CollapseMenu";
+import { BsSlack } from "react-icons/bs";
 
 const Navbar = (props) => {
   const barAnimation = useSpring({
@@ -52,7 +53,7 @@ const NavBar = styled(animated.nav)`
   width: 100%;
   top: 0;
   left: 0;
-  background: black;
+  background: #bad9e3;
   z-index: 999;
   font-size: 1.4rem;
 `;
@@ -84,14 +85,14 @@ const NavItems = styled(animated.ul)`
 const NavLinks = styled(Link)`
   color: #fff;
   text-transform: uppercase;
-  font-weight: 600;
+  font-weight: 700;
   border-bottom: 1px solid transparent;
   margin: 0 1.5rem;
   transition: all 300ms linear 0s;
   text-decoration: none;
   cursor: pointer;
   &:hover {
-    color: #f26522;
+    color: #000;
   }
 `;
 

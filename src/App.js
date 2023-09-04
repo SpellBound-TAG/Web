@@ -8,7 +8,8 @@ import AudioPlay from "./Upload/AudioUploader";
 import CollapseMenu from "./HomePage/Permission";
 import PredictionForm from "./PredictionDemo";
 import NavbarFinal from "./Navbar";
-import Contact from "./Contact";
+
+import Final from "./SignUp/Final";
 
 const App = () => {
   const [navbarOpen, setnavbarOpen] = useState(false);
@@ -25,6 +26,7 @@ const App = () => {
         <NavbarFinal navbarOpen={navbarOpen} handleNavbar={handleNavbar} />
         <Routes>
           <Route exact path="/" element={<CollapseMenu />} />
+          <Route path="signup" element={<Final />} />
           <Route path="/user" element={<UserData />} />
           <Route path="/choice" element={<Choice />} />
           <Route path="/upload" element={<AudioPlay />} />
