@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, createContext, useContext } from "react";
 import { TextField, Button, Stack } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 // import useWindowSize from "react-use/lib/useWindowSize";
@@ -30,6 +30,8 @@ import Slider from "@mui/material/Slider";
 import Tooltip from "@mui/material/Tooltip";
 // import Box from "@mui/material/Box";
 import BgImg from "../images/flower.jpg";
+
+const Mycontext = createContext();
 
 function ValueLabelComponent(props) {
   const { children, value } = props;
@@ -164,6 +166,7 @@ export default function UserData() {
     dob: 20,
     gender: "",
   });
+  const [docId, setDocId] = useState();
 
   const handleChange = (event) => {
     setUserDetails({
@@ -183,6 +186,7 @@ export default function UserData() {
         created: serverTimestamp(),
         userDetails: userDetails,
       });
+      setDocId(docRef.id);
       // console.log("Document written with ID: ", docRef);
     } catch (e) {
       console.error("Error adding document: ", e);

@@ -1,71 +1,50 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SVG Lab 1</title>
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <title>Global Temperature Scatterplot</title>
+    <style>
+      /* Set the background image for the SVG container */
+      #svg-container1 {
+        background-image: url("./pexels-leeloo-thefirst-5245122.jpg");
+        background-size: 100% 100%; /* Make the image cover the entire container */
+        background-repeat: no-repeat;
+        width: 500px;
+        height: 500px;
+        margin-bottom: 5%;
+      }
+
+      #svg-container2 {
+        background-image: url("./istockphoto-1332575232-612x612.jpg");
+        background-size: 100% 100%; /* Make the image cover the entire container */
+        background-repeat: no-repeat;
+        width: 500px;
+        height: 500px;
+        margin-bottom: 5%;
+      }
+
+      #svg-container3 {
+        background-image: url("./pexels-ithalu-dominguez-907485.jpg");
+        background-size: 100% 100%; /* Make the image cover the entire container */
+        background-repeat: no-repeat;
+        width: 500px;
+        height: 500px;
+        margin-bottom: 5%;
+      }
+    </style>
   </head>
   <body>
-    <div>
-      <svg
-        id="red_bar_chart"
-        width="400"
-        height="400"
-        style="fill: red; stroke: black; stroke-width: 1px"
-      >
-        <!-- <text x="20" y="35" rotate="180" textLength="100px">trahc de R</text> -->
-        <rect x="0" y="250" width="50" height="150" />
-        <rect x="50" y="175" width="50" height="225" />
-        <rect x="100" y="175" width="50" height="225" />
-        <rect x="150" y="100" width="50" height="300" />
-        <rect x="200" y="100" width="50" height="300" />
-        <rect x="250" y="175" width="50" height="225" />
-        <rect x="300" y="175" width="50" height="225" />
-        <rect x="350" y="250" width="50" height="150" />
-      </svg>
-      <svg
-        id="blue_bar_chart"
-        width="400"
-        height="400"
-        style="fill: blue; stroke: black; stroke-width: 1px"
-      >
-        <!-- <text x="20" y="35" rotate="180" textLength="100px">trahc eul B</text> -->
-        <rect x="0" y="250" width="50" height="150" />
-        <rect x="50" y="175" width="50" height="225" />
-        <rect x="100" y="175" width="50" height="225" />
-        <rect x="150" y="100" width="50" height="300" />
-        <rect x="200" y="100" width="50" height="300" />
-        <rect x="250" y="175" width="50" height="225" />
-        <rect x="300" y="175" width="50" height="225" />
-        <rect x="350" y="250" width="50" height="150" />
-      </svg>
-      <div>
-        <svg
-          id="line_line_chart"
-          width="400"
-          height="400"
-          style="stroke: black; fill: none; stroke-width: 2px"
-        >
-          <line x1="0" y1="250" x2="50" y2="175" />
-          <line x1="50" y1="175" x2="100" y2="175" />
-          <line x1="100" y1="175" x2="150" y2="100" />
-          <line x1="150" y1="100" x2="250" y2="100" />
-          <line x1="250" y1="100" x2="300" y2="175" />
-          <line x1="300" y1="175" x2="350" y2="175" />
-          <line x1="350" y1="175" x2="400" y2="250" />
-        </svg>
-        <svg
-          id="path_line_chart"
-          width="400"
-          height="400"
-          style="stroke: rgb(245, 140, 3); fill: none; stroke-width: 2px"
-        >
-          <path
-            d="M 0 250 L 50 175 L 100 175 L 150 100 L 250 100 L 300 175 L 350 175 L 400 250"
-            fill="none"
-          />
-        </svg>
-      </div>
+    <div id="svg-container1">
+      <svg id="chart1" width="500" height="500"></svg>
     </div>
+    <div id="svg-container2">
+      <svg id="chart2" width="500" height="500"></svg>
+    </div>
+    <div id="svg-container3">
+      <svg id="chart3" width="500" height="500"></svg>
+    </div>
+    <script src="script.js"></script>
   </body>
 </html>

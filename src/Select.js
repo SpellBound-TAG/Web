@@ -65,9 +65,12 @@ const borderText = makeStyles((theme) => ({
   },
 }));
 
-export default function MultipleSelectCheckmarks({ data, name }, val) {
+export default function MultipleSelectCheckmarks(
+  { data, name, options, handleOptions },
+  val
+) {
   const [personName, setPersonName] = React.useState([]);
-  const [selectedValues, setSelectedValues] = React.useState([]);
+
   const bor = borderText();
 
   const handleChange = (event) => {
@@ -75,8 +78,10 @@ export default function MultipleSelectCheckmarks({ data, name }, val) {
       target: { value, name },
     } = event;
     console.log(event);
-    val.concat(value);
-    setSelectedValues(selectedValues.concat(value));
+    handleOptions({
+      ...options,
+      [event.target.name]: event.target.value,
+    });
     setPersonName(
       // On autofill we get a stringified value.
       typeof value === "string" ? value.split(",") : value
